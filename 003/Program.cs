@@ -131,6 +131,39 @@ foreach (var partNumber in partNumbers)
 Console.WriteLine($"Day 3, Part 1: {matchedTotal}");
 
 
+var gearRatioTotal = 0;
+
+// go through all *
+foreach (var sym in symbols.Where(x => x.Symbol == "*"))
+{
+    // matched parts
+    var gearMatchParts = new List<PartNumber>();
+    foreach (var part in partNumbers)
+    {
+        var possible = findPossible(part);
+        if (possible.Any(x => x.Item1 == sym.Row && x.Item2 == sym.StartIndex))
+        {
+            Console.WriteLine(" ==> GEAR MATCH!");
+            gearMatchParts.Add(part);
+        }
+        else
+        {
+            Console.WriteLine(" ==> No MATCH!");
+        }
+    }
+
+    if (gearMatchParts.Count > 1)
+    {
+        Console.WriteLine(" ==> IS GEAR RATIO!");
+        int res = 1;
+        foreach (var g in gearMatchParts)
+            res = res * g.Number;
+        gearRatioTotal += res;
+    }
+}
+Console.WriteLine($"Day 3, Part 2: {gearRatioTotal}");
+
+
 class PartNumber
 {
     public int Number { get; set; }
