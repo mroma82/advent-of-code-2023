@@ -128,7 +128,7 @@ foreach (var partNumber in partNumbers)
     }
 }
 
-Console.WriteLine($"Day 3, Part 1: {matchedTotal}");
+
 
 
 var gearRatioTotal = 0;
@@ -161,6 +161,9 @@ foreach (var sym in symbols.Where(x => x.Symbol == "*"))
         gearRatioTotal += res;
     }
 }
+
+// show results
+Console.WriteLine($"Day 3, Part 1: {matchedTotal}");
 Console.WriteLine($"Day 3, Part 2: {gearRatioTotal}");
 
 
