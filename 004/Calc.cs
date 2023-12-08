@@ -1,3 +1,4 @@
+using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
 
 public class Calc
@@ -8,6 +9,7 @@ public class Calc
 
     // exposed
     public Card[] Cards { get; set; }
+    public List<int> Matches { get; set; } = new List<int>();
 
     public Calc(string input)
     {
@@ -47,6 +49,47 @@ public class Calc
     public int TotalScore()
     {
         return Cards.Select(x => x.Score).Sum();
+    }
+
+    public int CalcPart2()
+    {
+        int total = 0;
+
+        for (int i = 0; i < Cards.Length; i++)
+        {
+            total += CalcPart2(Cards[i], i);
+            total++;
+            Matches.Add(i + 1);
+        }
+
+        return total;
+    }
+
+    public int CalcPart2(Card card, int index)
+    {
+        int x = 0;
+
+        foreach (var n in card.CardNumbers)
+        {
+            if (card.WinningNumbers.Contains(n))
+            {
+                x++;
+            }
+        }
+
+
+        int total = 0;
+        for (int i = 1; i <= x; i++)
+        {
+            if (index + i < Cards.Length)
+            {
+                total += CalcPart2(Cards[index + i], index + i);
+                total++;
+                Matches.Add(index + i + 1);
+            }
+        }
+
+        return total;
     }
 
     // run

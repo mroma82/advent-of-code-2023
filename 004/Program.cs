@@ -14,9 +14,11 @@ foreach (var card in testCalc.Cards)
 }
 
 Console.WriteLine($"Test Total: {testCalc.TotalScore()}");
+Console.WriteLine($"Test Scratch Cards: {testCalc.CalcPart2()}");
 
 // run
 var calc = new Calc("input.txt");
 calc.Run();
 
 Console.WriteLine($"Day 4, Part 1: {calc.TotalScore()}");
+Console.WriteLine($"Day 4, Part 2: {calc.CalcPart2()}");
