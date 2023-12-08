@@ -6,3 +6,6 @@ day02:
 
 day03:
 	cd 003/; dotnet run
+
+day04:
+	cd 004/; dotnet run
